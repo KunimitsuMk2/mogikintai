@@ -1,0 +1,278 @@
+/* 申請一覧画面のスタイル */
+
+.correction-list__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.correction-list__heading {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    border-left: 5px solid #333;
+    padding-left: 15px;
+    color: #333;
+}
+
+/* タブナビゲーション */
+.correction-list__tab-nav {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.correction-list__tab {
+    background: none;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #6c757d;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.correction-list__tab:hover {
+    color: #495057;
+}
+
+.correction-list__tab--active {
+    color: #333;
+}
+
+.correction-list__tab--active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #333;
+}
+
+/* タブコンテンツ */
+.correction-list__tab-content {
+    display: none;
+}
+
+.correction-list__tab-content--active {
+    display: block;
+}
+
+/* テーブルコンテナ */
+.correction-list__table-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* テーブル */
+.correction-list__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.correction-list__th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: bold;
+    padding: 15px 12px;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+}
+
+.correction-list__th:last-child {
+    border-right: none;
+}
+
+/* テーブルヘッダーの幅調整 */
+.correction-list__th:nth-child(1) {
+    /* 状態 */
+    width: 10%;
+}
+
+.correction-list__th:nth-child(2) {
+    /* 名前 */
+    width: 15%;
+}
+
+.correction-list__th:nth-child(3) {
+    /* 対象日時 */
+    width: 15%;
+}
+
+.correction-list__th:nth-child(4) {
+    /* 申請理由 */
+    width: 30%;
+}
+
+.correction-list__th:nth-child(5) {
+    /* 申請日時 */
+    width: 15%;
+}
+
+.correction-list__th:nth-child(6) {
+    /* 詳細 */
+    width: 15%;
+    text-align: center;
+}
+
+.correction-list__td {
+    padding: 12px;
+    border-bottom: 1px solid #e9ecef;
+    border-right: 1px solid #e9ecef;
+    vertical-align: middle;
+}
+
+.correction-list__td:last-child {
+    border-right: none;
+    text-align: center;
+}
+
+.correction-list__td--empty {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    padding: 30px 12px;
+}
+
+/* テーブル行のホバー効果 */
+.correction-list__table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* 詳細ボタン */
+.correction-list__detail-button {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    min-width: 40px;
+    text-align: center;
+}
+
+.correction-list__detail-button:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+    color: #fff;
+}
+
+/* 申請理由の文字が長い場合の対応 */
+.correction-list__td:nth-child(4) {
+    word-wrap: break-word;
+    word-break: break-all;
+    max-width: 200px;
+}
+
+/* 日付の表示を統一 */
+.correction-list__td:nth-child(3),
+.correction-list__td:nth-child(5) {
+    white-space: nowrap;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .correction-list__content {
+        padding: 15px;
+    }
+
+    .correction-list__heading {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .correction-list__table-container {
+        overflow-x: auto;
+    }
+
+    .correction-list__table {
+        min-width: 700px;
+    }
+
+    .correction-list__th,
+    .correction-list__td {
+        padding: 8px 6px;
+        font-size: 12px;
+    }
+
+    .correction-list__tab {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    /* モバイルでの幅調整 */
+    .correction-list__th:nth-child(1) {
+        width: 12%;
+    }
+
+    .correction-list__th:nth-child(2) {
+        width: 15%;
+    }
+
+    .correction-list__th:nth-child(3) {
+        width: 15%;
+    }
+
+    .correction-list__th:nth-child(4) {
+        width: 28%;
+    }
+
+    .correction-list__th:nth-child(5) {
+        width: 15%;
+    }
+
+    .correction-list__th:nth-child(6) {
+        width: 15%;
+    }
+}
+
+@media (max-width: 480px) {
+    .correction-list__content {
+        padding: 10px;
+    }
+
+    .correction-list__heading {
+        font-size: 20px;
+        margin-bottom: 15px;
+        padding-left: 10px;
+        border-left: 3px solid #333;
+    }
+
+    .correction-list__table {
+        min-width: 600px;
+    }
+
+    .correction-list__th,
+    .correction-list__td {
+        padding: 6px 4px;
+        font-size: 11px;
+    }
+
+    .correction-list__detail-button {
+        padding: 4px 8px;
+        font-size: 10px;
+        min-width: 35px;
+    }
+
+    .correction-list__tab {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    /* 申請理由の幅をさらに調整 */
+    .correction-list__td:nth-child(4) {
+        max-width: 120px;
+    }
+}

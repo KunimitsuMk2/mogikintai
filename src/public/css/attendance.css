@@ -1,0 +1,101 @@
+/* public/css/attendance.css */
+.attendance__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 60px);
+    /* ヘッダーの高さを考慮 */
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.attendance__status-badge {
+    background-color: #ccc;
+    color: #333;
+    padding: 8px 25px;
+    border-radius: 20px;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+.attendance__datetime {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.attendance__date {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.attendance__time {
+    font-size: 72px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.attendance__actions {
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.attendance__buttons-group {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.attendance__form {
+    width: 100%;
+}
+
+.attendance__button {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.attendance__button--primary {
+    background-color: #000;
+    color: #fff;
+}
+
+.attendance__button--primary:hover {
+    background-color: #333;
+}
+
+.attendance__button--secondary {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ddd;
+}
+
+.attendance__button--secondary:hover {
+    background-color: #f9f9f9;
+}
+
+.attendance__message {
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .attendance__time {
+        font-size: 60px;
+    }
+
+    .attendance__buttons-group {
+        flex-direction: column;
+    }
+}

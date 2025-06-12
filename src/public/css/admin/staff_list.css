@@ -1,0 +1,157 @@
+/* スタッフ一覧画面のスタイル */
+
+.admin-staff-list__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.admin-staff-list__heading {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    border-left: 5px solid #333;
+    padding-left: 15px;
+    color: #333;
+}
+
+/* テーブルコンテナ */
+.admin-staff-list__table-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* テーブル */
+.admin-staff-list__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.admin-staff-list__th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: 600;
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+}
+
+.admin-staff-list__th:last-child {
+    border-right: none;
+}
+
+/* テーブルヘッダーの幅調整 */
+.admin-staff-list__th:nth-child(1) {
+    /* 名前 */
+    width: 25%;
+}
+
+.admin-staff-list__th:nth-child(2) {
+    /* メールアドレス */
+    width: 50%;
+}
+
+.admin-staff-list__th:nth-child(3) {
+    /* 月次勤怠 */
+    width: 25%;
+    text-align: center;
+}
+
+.admin-staff-list__td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #e9ecef;
+    border-right: 1px solid #e9ecef;
+    vertical-align: middle;
+    color: #333;
+}
+
+.admin-staff-list__td:last-child {
+    border-right: none;
+    text-align: center;
+}
+
+.admin-staff-list__td--empty {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    padding: 40px 20px;
+}
+
+/* テーブル行のホバー効果 */
+.admin-staff-list__table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* 詳細ボタン */
+.admin-staff-list__detail-button {
+    display: inline-block;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 6px 12px;
+    transition: color 0.3s ease;
+}
+
+.admin-staff-list__detail-button:hover {
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .admin-staff-list__content {
+        padding: 15px;
+    }
+
+    .admin-staff-list__heading {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .admin-staff-list__table-container {
+        overflow-x: auto;
+    }
+
+    .admin-staff-list__table {
+        min-width: 600px;
+    }
+
+    .admin-staff-list__th,
+    .admin-staff-list__td {
+        padding: 12px 15px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-staff-list__content {
+        padding: 10px;
+    }
+
+    .admin-staff-list__heading {
+        font-size: 20px;
+        margin-bottom: 15px;
+        padding-left: 10px;
+        border-left: 3px solid #333;
+    }
+
+    .admin-staff-list__table {
+        min-width: 500px;
+    }
+
+    .admin-staff-list__th,
+    .admin-staff-list__td {
+        padding: 10px 12px;
+        font-size: 11px;
+    }
+
+    .admin-staff-list__td--empty {
+        padding: 30px 12px;
+    }
+}

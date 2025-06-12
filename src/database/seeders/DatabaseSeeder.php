@@ -8,11 +8,14 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            AdminUserSeeder::class,      // 管理者ユーザー
+            UserSeeder::class,           // 一般ユーザー
+            AttendanceSeeder::class,     // 勤怠データ
+            AttendanceCorrectionRequestSeeder::class, // 修正申請データ
+        ]);
     }
 }

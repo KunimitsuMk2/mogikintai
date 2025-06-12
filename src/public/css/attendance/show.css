@@ -1,0 +1,157 @@
+/* 勤怠詳細ページのスタイル */
+body {
+    background-color: #f5f5f5;
+}
+
+.attendance-detail__content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 15px;
+}
+
+.attendance-detail__heading {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.attendance-detail__container {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.attendance-detail__row {
+    display: flex;
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+
+.attendance-detail__label {
+    width: 150px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.attendance-detail__value {
+    flex: 1;
+}
+
+.attendance-detail__time-range {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.attendance-detail__time-field {
+    width: 100px;
+}
+
+.attendance-detail__time-field input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.attendance-detail__time-separator {
+    margin: 0 10px;
+}
+
+.attendance-detail__textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.attendance-detail__button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.attendance-detail__button {
+    display: inline-block;
+    padding: 10px 30px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.attendance-detail__button:hover {
+    opacity: 0.8;
+}
+
+/* 承認済みボタンのスタイル */
+.attendance-detail__approved-button {
+    display: inline-block;
+    padding: 10px 30px;
+    background-color: #696969;
+    color: #fff;
+    border-radius: 4px;
+    font-weight: bold;
+    text-align: center;
+    cursor: default;
+}
+
+.attendance-detail__pending-message {
+    color: #ff0000;
+    font-size: 14px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.attendance-detail__rest-additional {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #ddd;
+}
+
+.attendance-detail__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
+}
+
+.time-validation-message {
+    height: 16px;
+    margin-top: 2px;
+}
+
+.time-input {
+    width: 70px;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.time-input:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .attendance-detail__row {
+        flex-direction: column;
+    }
+
+    .attendance-detail__label {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .attendance-detail__time-field {
+        width: 80px;
+    }
+}
