@@ -188,89 +188,89 @@ class AttendanceController extends Controller
 
     }
     public function show(Attendance $attendance)
-    {
-        // アクセス権限の確認（自分の勤怠データのみ閲覧可能）
-        if($attendance->user_id !== Auth::id() && !Auth::user()->isAdmin()){
-            abort(403,'権限がありません');
-        }
-
-        // 修正申請がすでに出されているか確認（pending と approved 両方）
-        $pendingRequest = AttendanceCorrectionRequest::where('attendance_id',$attendance->id)
-            ->where('status','pending')
-            ->first();
-
-        $approvedRequest = AttendanceCorrectionRequest::where('attendance_id',$attendance->id)
-            ->where('status','approved')
-            ->first();
-
-        // 管理者フラグ
-        $isAdmin = Auth::user()->isAdmin();
-
-        // 表示用データの準備
-        $displayData = $this->prepareDisplayData($attendance, $pendingRequest, $approvedRequest);
-
-        return view('attendance.show', compact(
-            'attendance', 
-            'pendingRequest', 
-            'approvedRequest', 
-            'isAdmin',
-            'displayData'
-        ));
+{
+    // アクセス権限の確認（自分の勤怠データのみ閲覧可能）
+    if($attendance->user_id !== Auth::id() && !Auth::user()->isAdmin()){
+        abort(403,'権限がありません');
     }
 
-    /**
-    * 表示用データを準備する
-    */
-    private function prepareDisplayData($attendance, $pendingRequest, $approvedRequest)
-    {
-        // 承認待ちの申請がある場合は申請データを優先
-        if ($pendingRequest) {
-            return [
-                'start_time' => $pendingRequest->requested_start_time,
-                'end_time' => $pendingRequest->requested_end_time,
-                'rest_times' => $this->formatRequestedBreaks($pendingRequest->requested_breaks),
-                'remarks' => $pendingRequest->remarks,
-                'data_source' => 'pending_request' // 何のデータか識別用
-            ];
-        }
-    
-        // 承認済みの申請がある場合も申請データを表示（最新の承認済みデータ）
-        if ($approvedRequest) {
-            return [
-                'start_time' => $approvedRequest->requested_start_time,
-                'end_time' => $approvedRequest->requested_end_time,
-                'rest_times' => $this->formatRequestedBreaks($approvedRequest->requested_breaks),
-                'remarks' => $approvedRequest->remarks,
-                'data_source' => 'approved_request'
-            ];
-        }
-    
-        // 申請がない場合は元の勤怠データを表示
+    // 修正申請がすでに出されているか確認（pending と approved 両方）
+    $pendingRequest = AttendanceCorrectionRequest::where('attendance_id',$attendance->id)
+        ->where('status','pending')
+        ->first();
+
+    $approvedRequest = AttendanceCorrectionRequest::where('attendance_id',$attendance->id)
+        ->where('status','approved')
+        ->first();
+
+    // 管理者フラグ
+    $isAdmin = Auth::user()->isAdmin();
+
+    // 表示用データの準備
+    $displayData = $this->prepareDisplayData($attendance, $pendingRequest, $approvedRequest);
+
+    return view('attendance.show', compact(
+        'attendance', 
+        'pendingRequest', 
+        'approvedRequest', 
+        'isAdmin',
+        'displayData'
+    ));
+}
+
+/**
+ * 表示用データを準備する
+ */
+private function prepareDisplayData($attendance, $pendingRequest, $approvedRequest)
+{
+    // 承認待ちの申請がある場合は申請データを優先
+    if ($pendingRequest) {
         return [
-            'start_time' => $attendance->start_time,
-            'end_time' => $attendance->end_time,
-            'rest_times' => $attendance->restTimes,
-            'remarks' => $attendance->remarks,
-            'data_source' => 'original_attendance'
+            'start_time' => $pendingRequest->requested_start_time,
+            'end_time' => $pendingRequest->requested_end_time,
+            'rest_times' => $this->formatRequestedBreaks($pendingRequest->requested_breaks),
+            'remarks' => $pendingRequest->remarks,
+            'data_source' => 'pending_request'
         ];
     }
-
-    /** 
-    * 申請の休憩時間データを表示用にフォーマット
-    */
-    private function formatRequestedBreaks($requestedBreaks)
-    {
-        if (!$requestedBreaks) {
-            return collect();
-        }
     
-        return collect($requestedBreaks)->map(function($break) {
-            return (object)[
-                'start_time' => $break['start'],
-                'end_time' => $break['end']
-            ];
-        });
+    // 承認済みの申請がある場合も申請データを表示
+    if ($approvedRequest) {
+        return [
+            'start_time' => $approvedRequest->requested_start_time,
+            'end_time' => $approvedRequest->requested_end_time,
+            'rest_times' => $this->formatRequestedBreaks($approvedRequest->requested_breaks),
+            'remarks' => $approvedRequest->remarks,
+            'data_source' => 'approved_request'
+        ];
     }
+    
+    // 申請がない場合は元の勤怠データを表示
+    return [
+        'start_time' => $attendance->start_time,
+        'end_time' => $attendance->end_time,
+        'rest_times' => $attendance->restTimes,
+        'remarks' => $attendance->remarks,
+        'data_source' => 'original_attendance'
+    ];
+}
+
+/**
+ * 申請の休憩時間データを表示用にフォーマット
+ */
+private function formatRequestedBreaks($requestedBreaks)
+{
+    if (!$requestedBreaks) {
+        return collect();
+    }
+    
+    return collect($requestedBreaks)->map(function($break) {
+        return (object)[
+            'start_time' => $break['start'],
+            'end_time' => $break['end']
+        ];
+    });
+}
     
 
     

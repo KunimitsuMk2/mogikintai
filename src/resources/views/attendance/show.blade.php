@@ -35,6 +35,17 @@
         @csrf
         
         <div class="attendance-detail__container">
+            <!-- 名前 -->
+    <div class="attendance-detail__row">
+        <div class="attendance-detail__label">名前</div>
+        <div class="attendance-detail__value">{{ $attendance->user->name }}</div>
+    </div>
+
+    <!-- 日付 -->
+    <div class="attendance-detail__row">
+        <div class="attendance-detail__label">日付</div>
+        <div class="attendance-detail__value">{{ \Carbon\Carbon::parse($attendance->date)->format('Y年m月d日') }}</div>
+    </div>
 
     {{-- 出勤・退勤時間の入力欄 --}}
     <div class="attendance-detail__row">
@@ -120,19 +131,19 @@
         </div>
     </div>
 
-            
-            <!-- ボタン表示制御 -->
-            <div class="attendance-detail__button-container">
-                @if($pendingRequest && !$isAdmin)
-                    <!-- 承認待ちの場合 -->
-                    <div class="attendance-detail__pending-message">
-                        承認待ちのため修正はできません。
-                    </div>
-                @elseif($approvedRequest && !$isAdmin)
-                    <!-- 承認済みの場合 -->
-                    <div class="attendance-detail__approved-button">承認済み</div>
-                @elseif(!$pendingRequest && !$approvedRequest || $isAdmin)
-                    <!-- 修正可能な場合 -->
+
+                <!-- ボタン表示制御 -->
+                <div class="attendance-detail__button-container">
+                    @if($pendingRequest && !$isAdmin)
+                        <!-- 承認待ちの場合 -->
+                        <div class="attendance-detail__pending-message">
+                            承認待ちのため修正はできません。
+                        </div>
+                    @elseif($approvedRequest && !$isAdmin)
+                        <!-- 承認済みの場合 -->
+                        <div class="attendance-detail__approved-button">承認済み</div>
+                    @elseif(!$pendingRequest && !$approvedRequest || $isAdmin)
+                        <!-- 修正可能な場合 -->
                     <button type="submit" class="attendance-detail__button">修正</button>
                 @endif
             </div>

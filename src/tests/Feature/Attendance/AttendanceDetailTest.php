@@ -54,6 +54,9 @@ class AttendanceDetailTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee($this->user->name);
+        
+        // $displayDataが正しく渡されていることを確認
+        $response->assertViewHas('displayData');
     }
 
     /**
@@ -70,6 +73,9 @@ class AttendanceDetailTest extends TestCase
         // 日付が正しい形式で表示されることを確認
         $expectedDate = Carbon::parse($this->attendance->date)->format('Y年m月d日');
         $response->assertSee($expectedDate);
+        
+        // $displayDataが正しく渡されていることを確認
+        $response->assertViewHas('displayData');
     }
 
     /**
@@ -347,6 +353,9 @@ class AttendanceDetailTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee($this->user->name);
+        
+        // $displayDataが正しく渡されていることを確認
+        $response->assertViewHas('displayData');
     }
 
     /**
